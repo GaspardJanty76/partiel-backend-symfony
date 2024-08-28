@@ -1,0 +1,21 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+home:
+    path: /
+    controller: App\Controller\EquipmentController::index
+
+equipment_index:
+    path: /equipment
+    controller: App\Controller\EquipmentController::index
+
+order_index:
+    path: /order
+    controller: App\Controller\OrderController::index
+
+orderitem_index:
+    path: /orderitem
+    controller: App\Controller\OrderItemController::new

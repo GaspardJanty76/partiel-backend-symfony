@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Commandes</h1>
+        <a href="{{ path('app_order_new') }}" class="btn btn-primary mb-3">Nouvelle commande</a>
+        <a href="{{ path('app_equipment_index') }}" class="btn btn-warning mb-3">Aller vers les produits</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prix total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.customerName }}</td>
+                        <td>{{ order.totalPrice }} €</td>
+                        <td>
+                            <a href="{{ path('app_order_show', {'id': order.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                            <a href="{{ path('app_order_edit', {'id': order.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                            <form action="{{ path('app_order_delete', {'id': order.id}) }}" method="post" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ order.id) }}">
+                                <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Pas de commandes.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un produit{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Modifier un produit</h1>
+
+{{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+    {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.quantity, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.rentalPrice, {'attr': {'class': 'form-control'}}) }}
+    <button class="btn btn-success mt-3">Modifier</button>
+{{ form_end(form) }}
+<a href="{{ path('app_equipment_index') }}" class="btn btn-secondary mt-3">Retour</a>
+{% endblock %}

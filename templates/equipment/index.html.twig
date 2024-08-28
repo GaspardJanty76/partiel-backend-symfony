@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Liste des produits</h1>
+
+<a href="{{ path('app_equipment_new') }}" class="btn btn-primary mb-3">Ajouter un nouveau produit</a>
+<a href="{{ path('app_order_index') }}" class="btn btn-warning mb-3">Aller vers les commandes</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Quantité disponible</th>
+            <th>Prix de location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for equipment in equipment %}
+        <tr>
+            <td>{{ equipment.name }}</td>
+            <td>{{ equipment.quantity }}</td>
+            <td>{{ equipment.rentalPrice | number_format(2, '.', ',') }} €</td>
+            <td>
+                <a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">Pas de produit disponible</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipment Details{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Equipment Details</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Produit</th>
+            <td>{{ equipment.name }}</td>
+        </tr>
+        <tr>
+            <th>Quantité disponible</th>
+            <td>{{ equipment.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Prix de location</th>
+            <td>{{ equipment.rentalPrice | number_format(2, '.', ',') }} €</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="{{ path('app_equipment_edit', {'id': equipment.id}) }}" class="btn btn-warning">Modifier</a>
+<a href="{{ path('app_equipment_index') }}" class="btn btn-secondary">Retour en arrière</a>
+{% endblock %}

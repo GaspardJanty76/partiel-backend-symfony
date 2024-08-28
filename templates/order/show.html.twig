@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Order Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order #{{ order.id }}</h5>
+                <p class="card-text"><strong>Nom :</strong> {{ order.customerName }}</p>
+                <p class="card-text"><strong>Prix total :</strong> {{ order.totalPrice }} €</p>
+
+                <h5 class="mt-4">Porduits</h5>
+                <ul class="list-group">
+                    {% for item in order.orderItems %}
+                        <li class="list-group-item">
+                            <strong>{{ item.equipmentRelation.name }}</strong> - {{ item.quantity }} @ {{ item.price }} €
+                        </li>
+                    {% else %}
+                        <li class="list-group-item">pas de produit trouvé.</li>
+                    {% endfor %}
+                </ul>
+
+                <a href="{{ path('app_order_index') }}" class="btn btn-secondary mt-3">Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

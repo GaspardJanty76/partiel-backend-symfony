@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Order{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Create New Order</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.customerName) }}
+    {{ form_row(form.orderItems) }}
+    <button class="btn btn-success">Save</button>
+{{ form_end(form) }}
+
+<a href="{{ path('app_order_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}
